@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Users</title>
+    <style>
+        body {
+            background-image: url('https://img.rawpixel.com/private/static/images/website/2022-05/rm422-076-x.jpg?w=1200&h=1200&dpr=1&fit=clip&crop=default&fm=jpg&q=75&vib=3&con=3&usm=15&cs=srgb&bg=F4F4F3&ixlib=js-2.2.1&s=444e119094ef45a3248aa529fb696b2b');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        
+        h1 {
+            color: #fcfbfb; /* White color for the heading */
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            border-radius: 5px;
+        }
+        
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #dddddd; /* Light gray bottom border for table rows */
+        }
+        
+        th {
+            background-color: #4CAF50; /* Green background color for table header */
+            color: white;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #333333; /* Dark gray color for links */
+            padding: 5px 10px;
+            border: 1px solid #dddddd; /* Light gray border for links */
+            border-radius: 4px;
+        }
+        
+        a:hover {
+            background-color: #4CAF50; /* Green background color on hover */
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>User List</h1>
+    <table>
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Mobile Number</th>
+            <th>Action</th>
+        </tr>
+        {% for user_profile in user_profiles %}
+        <tr>
+            <td>{{ user_profile.user.username }}</td>
+            <td>{{ user_profile.user.email }}</td>
+            <td>{{ user_profile.mobile_number }}</td>
+            <td>
+                <a href="{% url 'edit_user' user_profile.id %}">Edit</a>
+                <a href="{% url 'delete_user' user_profile.id %}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

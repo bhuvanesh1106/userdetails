@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Welcome to the Dashboard</h1>
+    
+    <h2>Users</h2>
+    <table>
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Mobile Number</th>
+            <th>Action</th>
+        </tr>
+        {% for user_profile in user_profiles %}
+        <tr>
+            <td>{{ user_profile.user.username }}</td>
+            <td>{{ user_profile.user.email }}</td>
+            <td>{{ user_profile.mobile_number }}</td>
+            <td>
+                <a href="{% url 'edit_user' user_profile.id %}">Edit</a>
+                <a href="{% url 'delete_user' user_profile.id %}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+    <h2>Create User</h2>
+    <form method="post" action="{% url 'create_user' %}">
+        {% csrf_token %}
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+        <label for="mobile_number">Mobile Number:</label>
+        <input type="text" id="mobile_number" name="mobile_number" required><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        <input type="submit" value="Create User">
+    </form>
+</body>
+</html>
